@@ -1,0 +1,20 @@
+author: dumptruckman
+database: false
+generator: http://dinnerbone.com/minecraft/tools/pluginator/
+main: com.dumptruckman.gmtools.GMTools
+name: GMTools
+startup: postworld
+version: b${build.number}
+
+softdepend: [Chunky]
+
+commands:
+  text:
+    description: Allows GM to send text without a name to the server.
+    usage: |
+           /<command> [-r:radius|-g] <text>
+  fireball:
+    description: Allows GM to shoot a fireball at their crosshair.
+    alias: fb
+    usage: |
+           /<command>
