@@ -1,15 +1,8 @@
 package com.dumptruckman.gmtools.listeners;
 
-import org.getchunky.chunky.ChunkyManager;
-import org.getchunky.chunky.object.ChunkyChunk;
-import org.getchunky.chunky.object.ChunkyPlayer;
-import org.getchunky.chunky.permission.ChunkyAccessLevel;
-import org.getchunky.chunky.permission.ChunkyPermissionChain;
-import org.getchunky.chunky.permission.ChunkyPermissions;
 import com.dumptruckman.gmtools.GMTools;
 import com.dumptruckman.gmtools.configuration.Config;
 import com.dumptruckman.gmtools.permissions.Perms;
-import com.dumptruckman.gmtools.util.Logging;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Fireball;
@@ -20,6 +13,12 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
+import org.getchunky.chunky.ChunkyManager;
+import org.getchunky.chunky.module.ChunkyPermissions;
+import org.getchunky.chunky.object.ChunkyChunk;
+import org.getchunky.chunky.object.ChunkyPlayer;
+import org.getchunky.chunky.permission.AccessLevel;
+import org.getchunky.chunky.permission.PermissionChain;
 
 /**
  * @author dumptruckman
@@ -51,7 +50,7 @@ public class GMToolsPlayerListener extends PlayerListener {
         if (GMTools.isChunky()) {
             ChunkyChunk cChunk = ChunkyManager.getChunk(player.getLocation());
             ChunkyPlayer cPlayer = ChunkyManager.getChunkyPlayer(player);
-            ChunkyAccessLevel access = ChunkyPermissionChain.hasPerm(cChunk, cPlayer, ChunkyPermissions.Flags.ITEMUSE);
+            AccessLevel access = PermissionChain.hasPerm(cChunk, cPlayer, ChunkyPermissions.ITEM_USE);
             if (access.causedDenial()) {
                 player.sendMessage("You may not teleport out of chunks you cannot use items on!");
                 return;
@@ -84,7 +83,7 @@ public class GMToolsPlayerListener extends PlayerListener {
         if (GMTools.isChunky()) {
             ChunkyChunk cChunk = ChunkyManager.getChunk(player.getLocation());
             ChunkyPlayer cPlayer = ChunkyManager.getChunkyPlayer(player);
-            if (ChunkyPermissionChain.hasPerm(cChunk, cPlayer, ChunkyPermissions.Flags.ITEMUSE).causedDenial()) {
+            if (PermissionChain.hasPerm(cChunk, cPlayer, ChunkyPermissions.ITEM_USE).causedDenial()) {
                 player.sendMessage("You may not teleport out of chunks you cannot use items on!");
                 event.setCancelled(true);
             }
