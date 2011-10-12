@@ -59,6 +59,10 @@ public class TextCommand implements CommandExecutor {
         }
 
         List<String> lines = Font.splitString(message);
+
+        for (String s : lines)
+            sender.sendMessage(s);
+
         if (isGlobal) {
             for (String s : lines)
                 Bukkit.getServer().broadcastMessage(s);
@@ -84,8 +88,6 @@ public class TextCommand implements CommandExecutor {
                 for (String s : lines)
                     ((CommandSender)entity).sendMessage(s);
         }
-        for (String s : lines)
-            player.sendMessage(s);
         return true;
     }
     

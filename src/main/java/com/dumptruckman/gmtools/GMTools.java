@@ -1,8 +1,10 @@
 package com.dumptruckman.gmtools;
 
+import com.dumptruckman.gmtools.commands.CmdChunkyChunkSetShop;
 import com.dumptruckman.gmtools.commands.FireballCommand;
 import com.dumptruckman.gmtools.commands.TextCommand;
 import com.dumptruckman.gmtools.configuration.Config;
+import com.dumptruckman.gmtools.listeners.ChunkyPlayerEvents;
 import com.dumptruckman.gmtools.listeners.GMToolsPlayerListener;
 import com.dumptruckman.gmtools.permissions.Perms;
 import com.dumptruckman.gmtools.util.Logging;
@@ -11,6 +13,10 @@ import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.getchunky.chunky.Chunky;
+import org.getchunky.chunky.event.ChunkyEvent;
+import org.getchunky.chunky.exceptions.ChunkyUnregisteredException;
+import org.getchunky.chunky.module.ChunkyCommand;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -68,7 +74,28 @@ public class GMTools extends JavaPlugin {
         if (chunky != null) {
             this.chunky = true;
             Logging.debug("Chunky hooked!");
+            registerChunkyCommands();
+            registerChunkyEvents();
         }
+    }
+
+    public void registerChunkyCommands() {
+        try {
+            ChunkyCommand ChunkyChunkSetShop = new ChunkyCommand("shop", new CmdChunkyChunkSetShop(),
+                    Chunky.getModuleManager().getCommandByName("chunky.chunk.set"))
+                    .setDescription("Allows people to barter in chunk.")
+                    .setHelpLines("Usage: /chunky chunk set shop <true|false>", "Allow/disallow people to set up barter signs in this chunk")
+                    .setInGameOnly(true)
+                    .register();
+        } catch (ChunkyUnregisteredException e) {
+            Logging.warning(e.getMessage());
+        }
+    }
+
+    public void registerChunkyEvents() {
+        ChunkyPlayerEvents p = new ChunkyPlayerEvents();
+        Chunky.getModuleManager().registerEvent(ChunkyEvent.Type.PLAYER_BUILD, p, ChunkyEvent.Priority.Normal, this);
+        Chunky.getModuleManager().registerEvent(ChunkyEvent.Type.PLAYER_DESTROY, p, ChunkyEvent.Priority.Normal, this);
     }
 
     public static boolean isChunky() {

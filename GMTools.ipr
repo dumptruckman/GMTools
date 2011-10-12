@@ -190,7 +190,7 @@
     <output url="file://$PROJECT_DIR$/classes" />
   </component>
   <component name="VcsDirectoryMappings">
-    <mapping directory="" vcs="" />
+    <mapping directory="" vcs="Git" />
   </component>
   <component name="libraryTable">
     <library name="Maven: com.dumptruckman:Chunky:0.0.3-SNAPSHOT">
@@ -337,26 +337,26 @@
         <root url="jar://$MAVEN_REPOSITORY$/org/bukkit/bukkit/0.0.1-SNAPSHOT/bukkit-0.0.1-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.getchunky:Chunky:Afghan-SNAPSHOT">
+    <library name="Maven: org.getchunky:Chunky:Buddha-SNAPSHOT">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/getchunky/Chunky/Afghan-SNAPSHOT/Chunky-Afghan-SNAPSHOT.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/getchunky/Chunky/Buddha-SNAPSHOT/Chunky-Buddha-SNAPSHOT.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/getchunky/Chunky/Afghan-SNAPSHOT/Chunky-Afghan-SNAPSHOT-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/getchunky/Chunky/Buddha-SNAPSHOT/Chunky-Buddha-SNAPSHOT-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/getchunky/Chunky/Afghan-SNAPSHOT/Chunky-Afghan-SNAPSHOT-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/getchunky/Chunky/Buddha-SNAPSHOT/Chunky-Buddha-SNAPSHOT-sources.jar!/" />
       </SOURCES>
     </library>
-    <library name="Maven: org.yaml:snakeyaml:1.7">
+    <library name="Maven: org.yaml:snakeyaml:1.9">
       <CLASSES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/yaml/snakeyaml/1.7/snakeyaml-1.7.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/yaml/snakeyaml/1.9/snakeyaml-1.9.jar!/" />
       </CLASSES>
       <JAVADOC>
-        <root url="jar://$MAVEN_REPOSITORY$/org/yaml/snakeyaml/1.7/snakeyaml-1.7-javadoc.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/yaml/snakeyaml/1.9/snakeyaml-1.9-javadoc.jar!/" />
       </JAVADOC>
       <SOURCES>
-        <root url="jar://$MAVEN_REPOSITORY$/org/yaml/snakeyaml/1.7/snakeyaml-1.7-sources.jar!/" />
+        <root url="jar://$MAVEN_REPOSITORY$/org/yaml/snakeyaml/1.9/snakeyaml-1.9-sources.jar!/" />
       </SOURCES>
     </library>
   </component>

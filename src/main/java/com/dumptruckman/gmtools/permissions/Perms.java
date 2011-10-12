@@ -12,7 +12,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public enum Perms {
     GM_TEXT (new Permission("gmtools.gm_text", PermissionDefault.OP)),
     GM_FIREBALL (new Permission("gmtools.gm_fireball", PermissionDefault.OP)),
-    NO_CDS (new Permission("gmtools.no_cooldowns", PermissionDefault.OP)),
     BED_SPAWN (new Permission("gmtools.bed_spawn", PermissionDefault.TRUE)),
     ;
 
