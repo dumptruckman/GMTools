@@ -1,6 +1,7 @@
 package com.dumptruckman.gmtools;
 
 import com.dumptruckman.gmtools.commands.CmdChunkyChunkSetShop;
+import com.dumptruckman.gmtools.commands.CmdChunkyChunkSetSpleef;
 import com.dumptruckman.gmtools.commands.FireballCommand;
 import com.dumptruckman.gmtools.commands.TextCommand;
 import com.dumptruckman.gmtools.configuration.Config;
@@ -84,7 +85,13 @@ public class GMTools extends JavaPlugin {
             ChunkyCommand ChunkyChunkSetShop = new ChunkyCommand("shop", new CmdChunkyChunkSetShop(),
                     Chunky.getModuleManager().getCommandByName("chunky.chunk.set"))
                     .setDescription("Allows people to barter in chunk.")
-                    .setHelpLines("Usage: /chunky chunk set shop <true|false>", "Allow/disallow people to set up barter signs in this chunk")
+                    .setHelpLines("Usage: /chunky chunk set shop <true|false>", "Allow/disallow people to set up signs in this chunk")
+                    .setInGameOnly(true)
+                    .register();
+            ChunkyCommand ChunkyChunkSetSpleef = new ChunkyCommand("spleef", new CmdChunkyChunkSetSpleef(),
+                    Chunky.getModuleManager().getCommandByName("chunky.chunk.set"))
+                    .setDescription("Allows people to destroy snow/dirt blocks.")
+                    .setHelpLines("Usage: /chunky chunk set spleef <true|false>", "Allow/disallow people to place/break dirt/snow in this chunk.")
                     .setInGameOnly(true)
                     .register();
         } catch (ChunkyUnregisteredException e) {
