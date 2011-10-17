@@ -48,7 +48,7 @@ public class GMToolsPlayerListener extends PlayerListener {
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
 
         if (GMTools.isChunky()) {
-            ChunkyChunk cChunk = ChunkyManager.getChunk(player.getLocation());
+            ChunkyChunk cChunk = ChunkyManager.getChunkyChunk(player.getLocation());
             ChunkyPlayer cPlayer = ChunkyManager.getChunkyPlayer(player);
             AccessLevel access = PermissionChain.hasPerm(cChunk, cPlayer, ChunkyPermissions.ITEM_USE);
             if (access.causedDenial()) {
@@ -81,7 +81,7 @@ public class GMToolsPlayerListener extends PlayerListener {
     public void commandSpawn(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
         if (GMTools.isChunky()) {
-            ChunkyChunk cChunk = ChunkyManager.getChunk(player.getLocation());
+            ChunkyChunk cChunk = ChunkyManager.getChunkyChunk(player.getLocation());
             ChunkyPlayer cPlayer = ChunkyManager.getChunkyPlayer(player);
             if (PermissionChain.hasPerm(cChunk, cPlayer, ChunkyPermissions.ITEM_USE).causedDenial()) {
                 player.sendMessage("You may not teleport out of chunks you cannot use items on!");

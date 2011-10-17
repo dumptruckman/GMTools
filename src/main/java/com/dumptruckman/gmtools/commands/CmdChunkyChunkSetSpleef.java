@@ -12,7 +12,7 @@ import org.getchunky.chunky.object.ChunkyPlayer;
 /**
  * @author dumptruckman
  */
-public class CmdChunkyChunkSetShop implements ChunkyCommandExecutor {
+public class CmdChunkyChunkSetSpleef implements ChunkyCommandExecutor {
 
     public void onCommand(CommandSender sender, ChunkyCommand command, String label, String[] args) {
         ChunkyPlayer cPlayer = ChunkyManager.getChunkyPlayer((Player)sender);
@@ -28,7 +28,7 @@ public class CmdChunkyChunkSetShop implements ChunkyCommandExecutor {
             return;
         }
 
-        cChunk.getData().put("BarterChunk", Boolean.valueOf(args[0]));
+        cChunk.getData().put("Spleef", Boolean.valueOf(args[0]));
         cChunk.save();
         sender.sendMessage(ChatColor.GREEN + "Success!");
     }
