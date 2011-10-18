@@ -18,3 +18,7 @@ commands:
     alias: fb
     usage: |
            /<command>
+  suicide:
+    description: Murders yourself.
+    usage: |
+           /<command>

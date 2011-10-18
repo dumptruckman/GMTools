@@ -4,13 +4,20 @@ import com.dumptruckman.gmtools.GMTools;
 import com.dumptruckman.gmtools.configuration.Config;
 import com.dumptruckman.gmtools.permissions.Perms;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.Chest;
+import org.bukkit.block.Sign;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 import org.getchunky.chunky.ChunkyManager;
@@ -76,6 +83,7 @@ public class GMToolsPlayerListener extends PlayerListener {
 
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
         if (event.getMessage().startsWith("/spawn")) commandSpawn(event);
+        if (event.getMessage().startsWith("/suicide")) playerSuicide(event.getPlayer());
     }
 
     public void commandSpawn(PlayerCommandPreprocessEvent event) {
@@ -84,9 +92,45 @@ public class GMToolsPlayerListener extends PlayerListener {
             ChunkyChunk cChunk = ChunkyManager.getChunkyChunk(player.getLocation());
             ChunkyPlayer cPlayer = ChunkyManager.getChunkyPlayer(player);
             if (PermissionChain.hasPerm(cChunk, cPlayer, ChunkyPermissions.ITEM_USE).causedDenial()) {
-                player.sendMessage("You may not teleport out of chunks you cannot use items on!");
+                player.sendMessage(ChatColor.RED + "You may not teleport out of chunks you cannot use items on!");
+                player.sendMessage("You may " + ChatColor.GREEN + "/suicide" + ChatColor.WHITE + " if you are stuck.");
+                player.sendMessage("A single chest will appear to try and save your inventory.");
                 event.setCancelled(true);
             }
         }
+    }
+
+    public static void playerSuicide(Player player) {
+        Location location = player.getLocation();
+        Inventory playerInventory = player.getInventory();
+        boolean emptyInv = true;
+        ItemStack[] invContents = playerInventory.getContents();
+        if (invContents != null) {
+            for (ItemStack item : invContents) {
+                if (item.getTypeId() > 0) {
+                    emptyInv = false;
+                    break;
+                }
+            }
+        }
+        if (!emptyInv) {
+            Block blockAtPlayer = location.getBlock();
+            blockAtPlayer.setType(Material.CHEST);
+            Chest deathChest = (Chest)blockAtPlayer.getState();
+            for (ItemStack item : playerInventory.getContents()) {
+                if (item.getTypeId() > 0) {
+                    playerInventory.remove(item);
+                    deathChest.getInventory().addItem(item);
+                }
+            }
+            Block deathSignBlock = blockAtPlayer.getRelative(BlockFace.UP);
+            deathSignBlock.setType(Material.SIGN_POST);
+            Sign sign = (Sign)deathSignBlock.getState();
+            sign.setLine(0, player.getName());
+            sign.setLine(1, "ended their");
+            sign.setLine(2, "pitiful life");
+            sign.setLine(3, "here.");
+        }
+        player.setHealth(0);
     }
 }
