@@ -38,7 +38,7 @@ public class SuicideCommand implements CommandExecutor {
         ItemStack[] invContents = playerInventory.getContents();
         if (invContents != null) {
             for (ItemStack item : invContents) {
-                if (item.getTypeId() > 0) {
+                if (item != null && item.getTypeId() > 0) {
                     emptyInv = false;
                     break;
                 }
