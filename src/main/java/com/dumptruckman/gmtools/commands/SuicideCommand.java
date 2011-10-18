@@ -49,7 +49,7 @@ public class SuicideCommand implements CommandExecutor {
             blockAtPlayer.setType(Material.CHEST);
             Chest deathChest = (Chest)blockAtPlayer.getState();
             for (ItemStack item : playerInventory.getContents()) {
-                if (item.getTypeId() > 0) {
+                if (item != null && item.getTypeId() > 0) {
                     playerInventory.remove(item);
                     deathChest.getInventory().addItem(item);
                 }
