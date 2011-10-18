@@ -83,7 +83,6 @@ public class GMToolsPlayerListener extends PlayerListener {
 
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
         if (event.getMessage().startsWith("/spawn")) commandSpawn(event);
-        if (event.getMessage().startsWith("/suicide")) playerSuicide(event.getPlayer());
     }
 
     public void commandSpawn(PlayerCommandPreprocessEvent event) {
@@ -100,37 +99,5 @@ public class GMToolsPlayerListener extends PlayerListener {
         }
     }
 
-    public static void playerSuicide(Player player) {
-        Location location = player.getLocation();
-        Inventory playerInventory = player.getInventory();
-        boolean emptyInv = true;
-        ItemStack[] invContents = playerInventory.getContents();
-        if (invContents != null) {
-            for (ItemStack item : invContents) {
-                if (item.getTypeId() > 0) {
-                    emptyInv = false;
-                    break;
-                }
-            }
-        }
-        if (!emptyInv) {
-            Block blockAtPlayer = location.getBlock();
-            blockAtPlayer.setType(Material.CHEST);
-            Chest deathChest = (Chest)blockAtPlayer.getState();
-            for (ItemStack item : playerInventory.getContents()) {
-                if (item.getTypeId() > 0) {
-                    playerInventory.remove(item);
-                    deathChest.getInventory().addItem(item);
-                }
-            }
-            Block deathSignBlock = blockAtPlayer.getRelative(BlockFace.UP);
-            deathSignBlock.setType(Material.SIGN_POST);
-            Sign sign = (Sign)deathSignBlock.getState();
-            sign.setLine(0, player.getName());
-            sign.setLine(1, "ended their");
-            sign.setLine(2, "pitiful life");
-            sign.setLine(3, "here.");
-        }
-        player.setHealth(0);
-    }
+
 }
