@@ -1,9 +1,6 @@
 package com.dumptruckman.gmtools;
 
-import com.dumptruckman.gmtools.commands.CmdChunkyChunkSetShop;
-import com.dumptruckman.gmtools.commands.CmdChunkyChunkSetSpleef;
-import com.dumptruckman.gmtools.commands.FireballCommand;
-import com.dumptruckman.gmtools.commands.TextCommand;
+import com.dumptruckman.gmtools.commands.*;
 import com.dumptruckman.gmtools.configuration.Config;
 import com.dumptruckman.gmtools.listeners.ChunkyPlayerEvents;
 import com.dumptruckman.gmtools.listeners.GMToolsPlayerListener;
@@ -66,6 +63,7 @@ public class GMTools extends JavaPlugin {
     private void registerCommands() {
         getCommand("text").setExecutor(new TextCommand());
         getCommand("fireball").setExecutor(new FireballCommand());
+        getCommand("suicide").setExecutor(new SuicideCommand());
     }
 
     private void hookChunky() {
