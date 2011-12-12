@@ -37,7 +37,7 @@ public class GMToolsPlayerListener extends PlayerListener {
         Player player = event.getPlayer();
         if (!GMTools.getExplosionPlayers().contains(player)) return;
 
-        event.getTo().getWorld().createExplosion(event.getTo(), 0);
+        event.getTo().getWorld().createExplosion(event.getTo(), 1);
     }
 
     public void onPlayerInteract(PlayerInteractEvent event) {
