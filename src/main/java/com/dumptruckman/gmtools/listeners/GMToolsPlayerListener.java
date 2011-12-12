@@ -17,6 +17,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerListener;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
@@ -32,10 +33,17 @@ import org.getchunky.chunky.permission.PermissionChain;
  */
 public class GMToolsPlayerListener extends PlayerListener {
 
+    public void onPlayerMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        if (!GMTools.getExplosionPlayers().contains(player)) return;
+
+        event.getTo().getWorld().createExplosion(event.getTo(), 0);
+    }
+
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         if (player.getItemInHand().getTypeId() == 51) fireBall(event);
-        if (player.getItemInHand().getTypeId() == Config.BED_SPAWN_ITEM.getInteger()) bedSpawn(event);
+        //if (player.getItemInHand().getTypeId() == Config.BED_SPAWN_ITEM.getInteger()) bedSpawn(event);
     }
 
     public void fireBall(PlayerInteractEvent event) {

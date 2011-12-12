@@ -23,6 +23,7 @@ public class GMTools extends JavaPlugin {
 
     private static GMTools INSTANCE;
     private static HashSet<Player> fireBallPlayers = new HashSet<Player>();
+    private static HashSet<Player> explosionPlayers = new HashSet<Player>();
     private static boolean chunky = false;
 
     private final GMToolsPlayerListener playerListener = new GMToolsPlayerListener();
@@ -63,6 +64,7 @@ public class GMTools extends JavaPlugin {
     private void registerCommands() {
         getCommand("text").setExecutor(new TextCommand());
         getCommand("fireball").setExecutor(new FireballCommand());
+        getCommand("explode").setExecutor(new ExplosionCommand());
         getCommand("suicide").setExecutor(new SuicideCommand());
     }
 
@@ -113,5 +115,9 @@ public class GMTools extends JavaPlugin {
 
     public static HashSet<Player> getFireBallPlayers() {
         return fireBallPlayers;
+    }
+
+    public static HashSet<Player> getExplosionPlayers() {
+        return explosionPlayers;
     }
 }

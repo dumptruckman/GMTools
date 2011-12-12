@@ -18,6 +18,11 @@ commands:
     alias: fb
     usage: |
            /<command>
+  explode:
+    description: Allows GM to explode while moving.
+    alias: expl
+    usage: |
+           /<command>
   suicide:
     description: Murders yourself.
     usage: |
