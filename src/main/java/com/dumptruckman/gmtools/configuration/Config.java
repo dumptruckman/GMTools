@@ -11,7 +11,8 @@ import java.io.IOException;
 public enum Config {
     DEBUG_MODE("settings.debug_mode.enable", false, "# Enables debug mode."),
     SPAWN_WORLD("settings.spawn.world_name", "fly", "# World name for spawn."),
-    BED_SPAWN_ITEM("settings.bed_spawn.item_id", 368, "# Item ID for bed spawning.")
+    BED_SPAWN_ITEM("settings.bed_spawn.item_id", 368, "# Item ID for bed spawning."),
+    EXPLODE_INTERVAL("settings.explode_interval", 10, "# Explosion interval in ticks.")
     ;
 
     private String path;

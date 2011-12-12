@@ -6,6 +6,7 @@ import com.dumptruckman.gmtools.listeners.ChunkyPlayerEvents;
 import com.dumptruckman.gmtools.listeners.GMToolsPlayerListener;
 import com.dumptruckman.gmtools.permissions.Perms;
 import com.dumptruckman.gmtools.util.Logging;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.plugin.Plugin;
@@ -24,6 +25,7 @@ public class GMTools extends JavaPlugin {
     private static GMTools INSTANCE;
     private static HashSet<Player> fireBallPlayers = new HashSet<Player>();
     private static HashSet<Player> explosionPlayers = new HashSet<Player>();
+    private static HashSet<Player> explodingPlayers = new HashSet<Player>();
     private static boolean chunky = false;
 
     private final GMToolsPlayerListener playerListener = new GMToolsPlayerListener();
@@ -50,6 +52,7 @@ public class GMTools extends JavaPlugin {
 
         registerEvents();
         registerCommands();
+        registerSchedule();
         hookChunky();
 
         Logging.info("is enabled!", true);
@@ -58,6 +61,7 @@ public class GMTools extends JavaPlugin {
     private void registerEvents() {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvent(Event.Type.PLAYER_INTERACT, playerListener, Event.Priority.Normal, this);
+        pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Event.Priority.Normal, this);
         pm.registerEvent(Event.Type.PLAYER_COMMAND_PREPROCESS, playerListener, Event.Priority.Lowest, this);
     }
 
@@ -105,6 +109,14 @@ public class GMTools extends JavaPlugin {
         Chunky.getModuleManager().registerEvent(ChunkyEvent.Type.PLAYER_DESTROY, p, ChunkyEvent.Priority.Normal, this);
     }
 
+    public void registerSchedule() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+            public void run() {
+                getExplodingPlayers().addAll(getExplosionPlayers());
+            }
+        }, 0, Config.EXPLODE_INTERVAL.getInteger());
+    }
+
     public static boolean isChunky() {
         return chunky;
     }
@@ -119,5 +131,9 @@ public class GMTools extends JavaPlugin {
 
     public static HashSet<Player> getExplosionPlayers() {
         return explosionPlayers;
+    }
+
+    public static HashSet<Player> getExplodingPlayers() {
+        return explodingPlayers;
     }
 }
