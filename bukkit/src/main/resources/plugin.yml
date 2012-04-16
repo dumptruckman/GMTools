@@ -1,20 +1,37 @@
-name: MatchMaker
-main: com.dumptruckman.minecraft.matchmaker.MatchMakerPlugin
-version: maven-version-number
 author: dumptruckman
+database: false
+generator: http://dinnerbone.com/minecraft/tools/pluginator/
+main: com.dumptruckman.minecraft.gmtools.GMToolsPlugin
+name: GMTools
+startup: postworld
+version: b${build.number}
+
 depend: [WorldEdit]
 
 commands:
-  match:
-    description: Base command for MatchMaker.
+  gm:
+    description: Base GMTools command.
     usage: |
            /<command>
-  mmkr:
-    description: Base command for MatchMaker.
+  text:
+    description: Allows GM to send text without a name to the server.
+    usage: |
+           /<command> [-r:radius|-g] <text>
+  gmtext:
+    description: Allows GM to send text without a name to the server.
+    usage: |
+           /<command> [-r:radius|-g] <text>
+  fireball:
+    description: Allows GM to shoot a fireball at their crosshair.
+    alias: fb
     usage: |
            /<command>
-  mm:
-    description: Base command for MatchMaker.
+  explode:
+    description: Allows GM to explode while moving.
+    alias: expl
     usage: |
            /<command>
-  
+  suicide:
+    description: Murders yourself.
+    usage: |
+           /<command>
