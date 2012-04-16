@@ -1,0 +1,20 @@
+name: MatchMaker
+main: com.dumptruckman.minecraft.matchmaker.MatchMakerPlugin
+version: maven-version-number
+author: dumptruckman
+depend: [WorldEdit]
+
+commands:
+  match:
+    description: Base command for MatchMaker.
+    usage: |
+           /<command>
+  mmkr:
+    description: Base command for MatchMaker.
+    usage: |
+           /<command>
+  mm:
+    description: Base command for MatchMaker.
+    usage: |
+           /<command>
+  

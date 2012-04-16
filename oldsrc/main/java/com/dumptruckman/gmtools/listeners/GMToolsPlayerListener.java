@@ -64,6 +64,7 @@ public class GMToolsPlayerListener extends PlayerListener {
 
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
 
+        /*
         if (GMTools.isChunky()) {
             ChunkyChunk cChunk = ChunkyManager.getChunkyChunk(player.getLocation());
             ChunkyPlayer cPlayer = ChunkyManager.getChunkyPlayer(player);
@@ -73,7 +74,7 @@ public class GMToolsPlayerListener extends PlayerListener {
                 return;
             }
         }
-
+*/
         Location loc = null;
         try {
             loc = player.getBedSpawnLocation();
@@ -97,6 +98,7 @@ public class GMToolsPlayerListener extends PlayerListener {
 
     public void commandSpawn(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
+        /*
         if (GMTools.isChunky()) {
             ChunkyChunk cChunk = ChunkyManager.getChunkyChunk(player.getLocation());
             ChunkyPlayer cPlayer = ChunkyManager.getChunkyPlayer(player);
@@ -106,7 +108,7 @@ public class GMToolsPlayerListener extends PlayerListener {
                 player.sendMessage("A single chest will appear to try and save your inventory.");
                 event.setCancelled(true);
             }
-        }
+        }*/
     }
 
 
