@@ -20,7 +20,6 @@ public class TextCommand extends GMCommand {
         this.setArgRange(1, 700);
         this.addKey("text");
         this.addPrefixedKey("text");
-        this.addPrefixedKey(" text");
         this.setPermission(Perms.CMD_TEXT.getPermission());
     }
 

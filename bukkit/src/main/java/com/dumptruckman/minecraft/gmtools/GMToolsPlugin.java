@@ -5,7 +5,10 @@ import com.dumptruckman.minecraft.gmtools.api.GMTools;
 import com.dumptruckman.minecraft.gmtools.command.TextCommand;
 import com.dumptruckman.minecraft.gmtools.util.YamlPluginConfig;
 import com.dumptruckman.minecraft.pluginbase.plugin.AbstractBukkitPlugin;
+import com.dumptruckman.minecraft.pluginbase.plugin.command.DebugCommand;
 import com.dumptruckman.minecraft.pluginbase.plugin.command.HelpCommand;
+import com.dumptruckman.minecraft.pluginbase.plugin.command.ReloadCommand;
+import com.dumptruckman.minecraft.pluginbase.plugin.command.VersionCommand;
 import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 
 import java.io.File;
@@ -20,7 +23,10 @@ public class GMToolsPlugin extends AbstractBukkitPlugin<GMConfig> implements GMT
     private final List<String> commandPrefixes = Arrays.asList("gm");
     
     public void preEnable() {
-        HelpCommand.addStaticPrefixedKey("");
+        ReloadCommand.addStaticPrefixedKey("reload");
+        HelpCommand.addStaticPrefixedKey("help");
+        VersionCommand.addStaticPrefixedKey("version");
+        DebugCommand.addStaticPrefixedKey("debug");
     }
 
     public void postEnable() {

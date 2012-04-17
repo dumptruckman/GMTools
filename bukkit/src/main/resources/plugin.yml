@@ -9,10 +9,22 @@ version: b${build.number}
 depend: [WorldEdit]
 
 commands:
-  gm:
-    description: Base GMTools command.
+  gmreload:
+    description: Reloads GMTools config.
     usage: |
            /<command>
+  gmhelp:
+    description: GMTools command list.
+    usage: |
+           /<command>
+  gmversion:
+    description: GMTools version info.
+    usage: |
+           /<command> [-p|-b]
+  gmdebug:
+    description: GMTools version info.
+    usage: |
+           /<command> [0-3]
   text:
     description: Allows GM to send text without a name to the server.
     usage: |
