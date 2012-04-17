@@ -4,7 +4,7 @@ generator: http://dinnerbone.com/minecraft/tools/pluginator/
 main: com.dumptruckman.minecraft.gmtools.GMToolsPlugin
 name: GMTools
 startup: postworld
-version: b${build.number}
+version: maven-version-number
 
 depend: [WorldEdit]
 
