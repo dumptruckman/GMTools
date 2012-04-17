@@ -63,21 +63,19 @@ public class TextCommand extends GMCommand {
             message.append(args.get(i));
         }
 
-        List<String> lines = Font.splitString(message.toString());
+        String formattedMessage = messager.format(message.toString());
 
-        sender.sendMessage("GMText: ");
-        for (String s : lines) {
-            sender.sendMessage(s);
-        }
+        List<String> lines = Font.splitString(formattedMessage);
 
         if (isGlobal) {
+            sender.sendMessage("Global GMText: ");
             for (String s : lines)
                 Bukkit.getServer().broadcastMessage(s);
             return;
-        }
-
-        if (isTargeted) {
+        } else if (isTargeted) {
+            sender.sendMessage("GMText to " + target.getName() + ": ");
             for (String s : lines) {
+                sender.sendMessage(s);
                 target.sendMessage(s);
             }
             return;
@@ -90,13 +88,18 @@ public class TextCommand extends GMCommand {
         Player player = (Player) sender;
 
         List<Entity> entities = player.getNearbyEntities(r,r,r);
-
+        int listenerCount = 0;
         for (Entity entity : entities) {
             if (entity instanceof CommandSender && !entity.equals(player)) {
+                listenerCount++;
                 for (String s : lines) {
                     ((CommandSender)entity).sendMessage(s);
                 }
             }
+        }
+        sender.sendMessage("Local GMText (radius: " + r + ", listeners: " + listenerCount + "): ");
+        for (String s : lines) {
+            sender.sendMessage(s);
         }
     }
 }
